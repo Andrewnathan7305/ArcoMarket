@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+/blockend/artifacts
+/blockend/node_modules
+*.md
+*.lockb
+blockend/package-lock.json
+*.sh
+/blockend/cache
+blockend/yarn.lock
