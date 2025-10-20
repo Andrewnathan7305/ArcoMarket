@@ -23,11 +23,19 @@ export default function CasesLayout() {
   }
 
   return (
-    <section className="px-6 py-8">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-        {cases.map((c) => (
-          <CaseCard key={c.id} item={c} />
-        ))}
+    <section className="px-6 py-12">
+      <div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 max-w-7xl mx-auto">
+          {cases.map((c, index) => (
+            <div 
+              key={c.id} 
+              className="animate-in fade-in slide-in-from-bottom-4 duration-500"
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
+              <CaseCard item={c} />
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

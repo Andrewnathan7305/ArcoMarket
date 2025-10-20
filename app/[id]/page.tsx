@@ -3,6 +3,7 @@ import React, { useMemo, useState } from "react";
 import { useCases } from "../CasesContext";
 import Image from "next/image";
 import Link from "next/link";
+import OutcomeChart from "../components/OutcomeChart";
 
 export default function CaseDetail({ params }: { params: { id: string } }) {
   const { cases } = useCases();
@@ -30,35 +31,51 @@ export default function CaseDetail({ params }: { params: { id: string } }) {
         <p className="text-neutral-400 text-sm mt-1">Market ID: {current.id}</p>
       </div>
 
+      {/* Chart section */}
+      <div className="mb-6">
+        <OutcomeChart 
+          data={current.chartData} 
+          outcomes={current.outcomes.map(o => ({ id: o.id, label: o.label, color: o.color }))}
+        />
+      </div>
+
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left: Outcomes list */}
         <div className="lg:col-span-2">
-          <div className="rounded-xl border border-accent-600/20 bg-neutral-900/40 overflow-hidden">
-            {current.imageUrl ? (
-              <div className="relative h-56 w-full bg-neutral-800">
-                <Image
-                  src={current.imageUrl}
-                  alt={current.title}
-                  fill
-                  className="object-cover opacity-80"
-                  sizes="100vw"
-                />
-              </div>
-            ) : null}
+          <div className="rounded-xl border border-primary-violet/20 bg-neutral-900/40 overflow-hidden">
             <div className="divide-y divide-neutral-800">
               {current.outcomes.map((o) => (
                 <button
                   key={o.id}
                   onClick={() => setSelectedOutcomeId(o.id)}
-                  className={`w-full text-left px-4 py-3 hover:bg-accent-700/10 transition ${
-                    o.id === selected?.id ? "bg-accent-700/10" : ""
+                  className={`w-full text-left px-4 py-3 transition-all duration-200 ${
+                    o.id === selected?.id 
+                      ? "bg-primary-violet/20 border-l-4 border-primary-violet text-white" 
+                      : "hover:bg-primary-violet/10 text-neutral-200"
                   }`}
                 >
                   <div className="flex items-center justify-between gap-4">
-                    <span className="text-neutral-200">{o.label}</span>
-                    <span className="text-neutral-400 text-sm">
-                      Yes {Math.round(o.yesProbability * 100)}% · No {Math.round(o.noProbability * 100)}%
+                    <span className={`font-medium ${
+                      o.id === selected?.id ? "text-white" : "text-neutral-200"
+                    }`}>
+                      {o.label}
                     </span>
+                    <div className="flex items-center gap-2">
+                      <span className={`text-xs font-bold px-2 py-1 rounded-full ${
+                        o.id === selected?.id 
+                          ? "bg-success-green/30 text-success-green" 
+                          : "bg-success-green/20 text-success-green"
+                      }`}>
+                        Yes {Math.round(o.yesProbability * 100)}%
+                      </span>
+                      <span className={`text-xs font-bold px-2 py-1 rounded-full ${
+                        o.id === selected?.id 
+                          ? "bg-danger-red/30 text-danger-red" 
+                          : "bg-danger-red/20 text-danger-red"
+                      }`}>
+                        No {Math.round(o.noProbability * 100)}%
+                      </span>
+                    </div>
                   </div>
                 </button>
               ))}
@@ -89,7 +106,6 @@ export default function CaseDetail({ params }: { params: { id: string } }) {
               <div>
                 <select className="bg-neutral-900 border border-accent-600/30 text-neutral-200 text-sm rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-accent-600">
                   <option>Market</option>
-                  <option>Binary</option>
                 </select>
               </div>
             </div>
@@ -152,7 +168,7 @@ export default function CaseDetail({ params }: { params: { id: string } }) {
             <button
               disabled={amount <= 0}
               className={`w-full px-4 py-3 rounded-md font-semibold transition ${
-                amount > 0 ? "bg-accent-gradient hover:opacity-90 text-white" : "bg-neutral-800 text-neutral-500 cursor-not-allowed"
+                amount > 0 ? "bg-accent-gradient bg-accent-gradient-hover text-white" : "bg-neutral-800 text-neutral-500 cursor-not-allowed"
               }`}
             >
               Trade
