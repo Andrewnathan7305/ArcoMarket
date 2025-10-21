@@ -219,6 +219,27 @@ async function fetchCasesMock(): Promise<CaseItem[]> {
         { time: "Jan 7", o1: 17, o2: 23, o3: 34, o4: 22, o5: 4 },
       ],
     },
+    {
+      id: "9",
+      title: "US GDP QoQ advance",
+      imageUrl: "/1.jpeg",
+      outcomes: [
+        { id: "o1", label: "> 3.0%", yesProbability: 0.22, noProbability: 0.78, color: "#10B981" },
+        { id: "o2", label: "2.5%–3.0%", yesProbability: 0.28, noProbability: 0.72, color: "#3B82F6" },
+        { id: "o3", label: "2.0%–2.5%", yesProbability: 0.35, noProbability: 0.65, color: "#8B5CF6" },
+        { id: "o4", label: "1.5%–2.0%", yesProbability: 0.31, noProbability: 0.69, color: "#F59E0B" },
+        { id: "o5", label: "< 1.5%", yesProbability: 0.19, noProbability: 0.81, color: "#EF4444" },
+      ],
+      chartData: [
+        { time: "Jan 1", o1: 15, o2: 20, o3: 30, o4: 25, o5: 10 },
+        { time: "Jan 2", o1: 18, o2: 23, o3: 32, o4: 22, o5: 5 },
+        { time: "Jan 3", o1: 20, o2: 25, o3: 35, o4: 18, o5: 2 },
+        { time: "Jan 4", o1: 16, o2: 22, o3: 33, o4: 24, o5: 5 },
+        { time: "Jan 5", o1: 19, o2: 24, o3: 34, o4: 20, o5: 3 },
+        { time: "Jan 6", o1: 22, o2: 26, o3: 36, o4: 15, o5: 1 },
+        { time: "Jan 7", o1: 17, o2: 23, o3: 34, o4: 22, o5: 4 },
+      ],
+    },
   ];
 }
 

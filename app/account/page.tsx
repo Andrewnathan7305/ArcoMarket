@@ -61,7 +61,7 @@ export default function AccountPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Account Information */}
-        <div className="rounded-xl border border-accent-600/20 bg-neutral-900/40 p-6">
+        <div className="rounded-xl border border-primary-violet/20 bg-neutral-900/40 p-6 animate-fade-in-up hover:scale-105 transition-transform duration-200">
           <h2 className="font-montserrat font-bold text-xl text-white mb-4">Account Information</h2>
           
           <div className="space-y-4">
@@ -85,7 +85,7 @@ export default function AccountPage() {
         </div>
 
         {/* Wallet Information */}
-        <div className="rounded-xl border border-accent-600/20 bg-neutral-900/40 p-6">
+        <div className="rounded-xl border border-primary-violet/20 bg-neutral-900/40 p-6 animate-fade-in-up animate-delay-100 hover:scale-105 transition-transform duration-200">
           <h2 className="font-montserrat font-bold text-xl text-white mb-4">Wallet Information</h2>
           
           <div className="space-y-4">
@@ -102,31 +102,31 @@ export default function AccountPage() {
         </div>
 
         {/* Trading Stats */}
-        <div className="rounded-xl border border-accent-600/20 bg-neutral-900/40 p-6">
+        <div className="rounded-xl border border-primary-violet/20 bg-neutral-900/40 p-6 animate-fade-in-up animate-delay-200 hover:scale-105 transition-transform duration-200">
           <h2 className="font-montserrat font-bold text-xl text-white mb-4">Trading Stats</h2>
           
           <div className="grid grid-cols-2 gap-4">
             <div className="text-center">
-              <p className="text-2xl font-bold text-accent-500">0</p>
+              <p className="text-2xl font-bold text-primary-purple">0</p>
               <p className="text-sm text-neutral-400">Total Trades</p>
             </div>
             <div className="text-center">
-              <p className="text-2xl font-bold text-accent-500">$0</p>
+              <p className="text-2xl font-bold text-primary-purple">$0</p>
               <p className="text-sm text-neutral-400">Total Volume</p>
             </div>
             <div className="text-center">
-              <p className="text-2xl font-bold text-accent-500">0%</p>
+              <p className="text-2xl font-bold text-primary-purple">0%</p>
               <p className="text-sm text-neutral-400">Win Rate</p>
             </div>
             <div className="text-center">
-              <p className="text-2xl font-bold text-accent-500">$0</p>
+              <p className="text-2xl font-bold text-primary-purple">$0</p>
               <p className="text-sm text-neutral-400">P&L</p>
             </div>
           </div>
         </div>
 
         {/* Actions */}
-        <div className="rounded-xl border border-accent-600/20 bg-neutral-900/40 p-6">
+        <div className="rounded-xl border border-primary-violet/20 bg-neutral-900/40 p-6 animate-fade-in-up animate-delay-300 hover:scale-105 transition-transform duration-200">
           <h2 className="font-montserrat font-bold text-xl text-white mb-4">Actions</h2>
           
           <div className="space-y-3">
@@ -139,7 +139,7 @@ export default function AccountPage() {
             
             <Link
               href="/"
-              className="block w-full px-4 py-2 rounded-md bg-accent-gradient bg-accent-gradient-hover transition font-semibold text-center"
+              className="block w-full px-4 py-2 rounded-md bg-primary-gradient hover:bg-primary-gradient-hover transition-all duration-300 font-semibold text-center text-white hover:scale-105"
             >
               Back to Markets
             </Link>

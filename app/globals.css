@@ -5,12 +5,12 @@
   --background: #000000; /* deep black */
   --foreground: #ffffff; /* white */
 
-  /* Premium Color Palette */
-  --primary-purple: #A47DAB;
-  --primary-violet: #8B5CF6;
-  --electric-blue: #3B82F6;
-  --success-green: #10B981;
-  --danger-red: #EF4444;
+  /* Premium Purple Gradient Palette */
+  --primary-purple: rgb(85,55,255);
+  --primary-violet: rgb(138,57,255);
+  --electric-blue: rgb(138,57,255);
+  --success-green: rgb(138,57,255);
+  --danger-red: rgb(138,57,255);
   --neutral-900: #111827;
   --neutral-800: #1F2937;
   --neutral-700: #374151;
@@ -23,14 +23,14 @@
 
   /* Glassmorphism */
   --glass-bg: rgba(17, 24, 39, 0.8);
-  --glass-border: rgba(139, 92, 246, 0.3);
+  --glass-border: rgba(85, 55, 255, 0.3);
   --glass-blur: 12px;
 
   /* Glow effects */
-  --glow-purple: 0 0 20px rgba(164, 125, 171, 0.3);
-  --glow-blue: 0 0 20px rgba(59, 130, 246, 0.3);
-  --glow-green: 0 0 20px rgba(16, 185, 129, 0.3);
-  --glow-red: 0 0 20px rgba(239, 68, 68, 0.3);
+  --glow-purple: 0 0 20px rgba(85, 55, 255, 0.3);
+  --glow-blue: 0 0 20px rgba(138, 57, 255, 0.3);
+  --glow-green: 0 0 20px rgba(138, 57, 255, 0.3);
+  --glow-red: 0 0 20px rgba(138, 57, 255, 0.3);
 }
 
 @theme inline {
@@ -81,7 +81,7 @@ body {
 }
 
 .bg-primary-gradient-hover:hover {
-  background: linear-gradient(135deg, var(--primary-violet), var(--electric-blue));
+  background: linear-gradient(135deg, var(--electric-blue), var(--success-green));
 }
 
 .bg-glass {
@@ -92,7 +92,7 @@ body {
 
 .bg-glass-hover:hover {
   background: rgba(17, 24, 39, 0.9);
-  border-color: rgba(139, 92, 246, 0.5);
+  border-color: rgba(85, 55, 255, 0.5);
 }
 
 /* Glow effects */
@@ -214,4 +214,33 @@ input[type="number"] {
 
 .float-gentle {
   animation: float-gentle 6s ease-in-out infinite;
+}
+
+/* Staggered animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-delay-100 {
+  animation-delay: 100ms;
+}
+
+.animate-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animate-delay-300 {
+  animation-delay: 300ms;
 }
