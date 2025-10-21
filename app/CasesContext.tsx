@@ -264,3 +264,34 @@ export function useCases() {
 }
 
 
+
+// async function fetchCasesMock(): Promise<CaseItem[]> {
+//   // Replace with real fetch to backend or contract
+//   await new Promise((r) => setTimeout(r, 300));
+//   return [
+//     {
+//       id: "1",
+//       title: "Bitcoin weekly close scenarios",
+//       // ... all the hardcoded data ...
+//     },
+//     // ... more cases ...
+//   ];
+// }
+
+
+
+
+// async function fetchCasesFromAPI(): Promise<CaseItem[]> {
+//   const response = await fetch("https://your-backend-api.com/api/cases");
+  
+//   if (!response.ok) {
+//     throw new Error(`Failed to fetch cases: ${response.status}`);
+//   }
+  
+//   const data: CaseItem[] = await response.json();
+//   return data;
+// }
+
+
+// const data = await fetchCasesMock();  // ← Line 240
+// const data = await fetchCasesFromAPI();  // ← Change function name

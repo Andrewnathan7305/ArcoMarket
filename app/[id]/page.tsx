@@ -15,7 +15,7 @@ export default function CaseDetail({ params }: { params: { id: string } }) {
 
   if (!current) {
     return (
-      <div className="px-6 py-8">
+      <div className="px-6 py-8 pt-24">
         <p className="text-neutral-300">Case not found.</p>
         <Link href="/" className="text-accent-500 hover:text-accent-600 underline">Go back</Link>
       </div>
@@ -25,7 +25,7 @@ export default function CaseDetail({ params }: { params: { id: string } }) {
   const selected = current.outcomes.find((o) => o.id === selectedOutcomeId) ?? current.outcomes[0];
 
   return (
-    <div className="px-6 py-8 max-w-6xl mx-auto">
+    <div className="px-6 py-8 pt-24 max-w-6xl mx-auto">
       <div className="mb-6">
         <h1 className="font-montserrat font-bold text-2xl text-white">{current.title}</h1>
         <p className="text-neutral-400 text-sm mt-1">Market ID: {current.id}</p>

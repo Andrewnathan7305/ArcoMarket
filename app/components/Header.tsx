@@ -95,7 +95,7 @@ export default function Header() {
     }
   };
   return (
-    <header className="w-full bg-black text-white flex items-center justify-between px-6 py-4 border-b border-primary-violet/20 relative z-50">
+    <header className="fixed top-0 left-0 right-0 w-full bg-black text-white flex items-center justify-between px-6 py-4 border-b border-primary-violet/20 z-50">
       {/* Background glow effect */}
       <div className="absolute inset-0 bg-gradient-to-r from-primary-purple/5 via-transparent to-electric-blue/5" />
       

@@ -38,7 +38,7 @@ export default function AccountPage() {
 
   if (!isLoggedIn || !user) {
     return (
-      <div className="px-6 py-8">
+      <div className="px-6 py-8 pt-24">
         <p className="text-neutral-300">Redirecting...</p>
       </div>
     );
@@ -53,7 +53,7 @@ export default function AccountPage() {
   };
 
   return (
-    <div className="px-6 py-8 max-w-4xl mx-auto">
+    <div className="px-6 py-8 pt-24 max-w-4xl mx-auto">
       <div className="mb-6">
         <h1 className="font-montserrat font-bold text-3xl text-white mb-2">Account</h1>
         <p className="text-neutral-400">Manage your account settings and view your information</p>
