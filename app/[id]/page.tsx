@@ -4,6 +4,7 @@ import { useCases } from "../CasesContext";
 import Image from "next/image";
 import Link from "next/link";
 import OutcomeChart from "../components/OutcomeChart";
+import Particles from "../components/Particles";
 
 export default function CaseDetail({ params }: { params: { id: string } }) {
   const { cases } = useCases();
@@ -15,9 +16,30 @@ export default function CaseDetail({ params }: { params: { id: string } }) {
 
   if (!current) {
     return (
-      <div className="px-6 py-8 pt-24">
-        <p className="text-neutral-300">Case not found.</p>
-        <Link href="/" className="text-accent-500 hover:text-accent-600 underline">Go back</Link>
+      <div className="relative min-h-screen">
+        {/* Fixed Particles Background */}
+        <div className="fixed inset-0 z-10 w-full h-full">
+          <Particles
+            particleCount={10000}
+            particleSpread={15}
+            speed={0.15}
+            particleColors={['#FFFFFF']}
+            moveParticlesOnHover={true}
+            particleHoverFactor={1.2}
+            alphaParticles={true}
+            particleBaseSize={50}
+            sizeRandomness={1.5}
+            cameraDistance={25}
+            disableRotation={false}
+            className="w-full h-full"
+          />
+        </div>
+        
+        {/* Content */}
+        <div className="relative z-20 px-6 py-8 pt-24">
+          <p className="text-neutral-300">Case not found.</p>
+          <Link href="/" className="text-primary-purple hover:text-primary-violet underline">Go back</Link>
+        </div>
       </div>
     );
   }
@@ -25,7 +47,27 @@ export default function CaseDetail({ params }: { params: { id: string } }) {
   const selected = current.outcomes.find((o) => o.id === selectedOutcomeId) ?? current.outcomes[0];
 
   return (
-    <div className="px-6 py-8 pt-24 max-w-6xl mx-auto">
+    <div className="relative min-h-screen">
+      {/* Fixed Particles Background */}
+      <div className="fixed inset-0 z-10 w-full h-full">
+        <Particles
+          particleCount={10000}
+          particleSpread={15}
+          speed={0.15}
+          particleColors={['#FFFFFF']}
+          moveParticlesOnHover={true}
+          particleHoverFactor={1.2}
+          alphaParticles={true}
+          particleBaseSize={50}
+          sizeRandomness={1.5}
+          cameraDistance={25}
+          disableRotation={false}
+          className="w-full h-full"
+        />
+      </div>
+      
+      {/* Content */}
+      <div className="relative z-20 px-6 py-8 pt-24 max-w-6xl mx-auto">
       <div className="mb-6">
         <h1 className="font-montserrat font-bold text-2xl text-white">{current.title}</h1>
         <p className="text-neutral-400 text-sm mt-1">Market ID: {current.id}</p>
@@ -175,6 +217,7 @@ export default function CaseDetail({ params }: { params: { id: string } }) {
             </button>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

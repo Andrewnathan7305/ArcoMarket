@@ -88,7 +88,7 @@ async function fetchCasesMock(): Promise<CaseItem[]> {
     },
     {
       id: "3",
-      title: "US CPI YoY next print",
+      title: "US CPI YoY next print hi and a  hit it",
       imageUrl: "/1.jpeg",
       outcomes: [
         { id: "o1", label: "> 4.0%", yesProbability: 0.18, noProbability: 0.82, color: "#EF4444" },
