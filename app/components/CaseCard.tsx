@@ -34,16 +34,16 @@ export default function CaseCard({ item }: Props) {
       </div>
 
       {/* Content Section */}
-      <div className="p-4 flex-1 flex flex-col">
+      <div className="p-4 flex-1 flex flex-col bg-black/90">
         {/* Title */}
-        <h3 className="font-montserrat font-bold text-xl text-white mb-3 line-clamp-2 group-hover:text-primary-purple transition-colors min-h-[56px]">                                                                                            
+        <h3 className="font-montserrat font-bold text-xl text-white mb-3 line-clamp-2  transition-colors min-h-[56px]">                                                                                            
           {item.title}
         </h3>
 
         {/* Outcomes Preview */}
         <div className="space-y-3  mb-4">
           {preview.map((o, index) => (
-            <div key={o.id} className="relative bg-neutral-800 rounded-lg p-3 hover:bg-neutral-700 transition-colors cursor-pointer">
+            <div key={o.id} className="relative bg-neutral-800/50 rounded-lg p-3 hover:bg-neutral-700/50 transition-colors cursor-pointer">
               <div className="flex items-center justify-between">
                 <span className="text-sm font-medium text-neutral-200 truncate">
                   {o.label}

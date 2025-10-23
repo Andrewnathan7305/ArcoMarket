@@ -2,15 +2,18 @@
 
 :root {
   /* Theme primitives */
-  --background: #000000; /* deep black */
-  --foreground: #ffffff; /* white */
+  --background: #000000;
+  --foreground: #ffffff;
 
-  /* Premium Purple Gradient Palette */
+  /* Purple Gradient Colors */
   --primary-purple: rgb(85,55,255);
   --primary-violet: rgb(138,57,255);
-  --electric-blue: rgb(138,57,255);
-  --success-green: rgb(138,57,255);
-  --danger-red: rgb(138,57,255);
+  
+  /* Status Colors */
+  --success-green: #10B981;
+  --danger-red: #EF4444;
+  
+  /* Neutral colors */
   --neutral-900: #111827;
   --neutral-800: #1F2937;
   --neutral-700: #374151;
@@ -28,20 +31,15 @@
 
   /* Glow effects */
   --glow-purple: 0 0 20px rgba(85, 55, 255, 0.3);
-  --glow-blue: 0 0 20px rgba(138, 57, 255, 0.3);
-  --glow-green: 0 0 20px rgba(138, 57, 255, 0.3);
-  --glow-red: 0 0 20px rgba(138, 57, 255, 0.3);
+  --glow-violet: 0 0 20px rgba(138, 57, 255, 0.3);
 }
 
 @theme inline {
   /* Colors */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-
-  /* Premium Accent Colors */
   --color-primary-purple: var(--primary-purple);
   --color-primary-violet: var(--primary-violet);
-  --color-electric-blue: var(--electric-blue);
   --color-success-green: var(--success-green);
   --color-danger-red: var(--danger-red);
   --color-neutral-900: var(--neutral-900);
@@ -58,8 +56,6 @@
   --font-sans: var(--font-montserrat);
 }
 
-/* Dark theme is the default; if needed, you can extend with media queries */
-
 body {
   background: var(--background);
   color: var(--foreground);
@@ -68,22 +64,22 @@ body {
     sans-serif;
 }
 
-/* Utility to target explicit Montserrat usage if needed */
 .font-montserrat {
   font-family: var(--font-montserrat), system-ui, -apple-system, Segoe UI, Roboto,
     Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
     sans-serif;
 }
 
-/* Premium gradient utilities */
+/* Gradient utilities */
 .bg-primary-gradient {
   background: linear-gradient(135deg, var(--primary-purple), var(--primary-violet));
 }
 
 .bg-primary-gradient-hover:hover {
-  background: linear-gradient(135deg, var(--electric-blue), var(--success-green));
+  background: linear-gradient(135deg, var(--primary-violet), var(--primary-purple));
 }
 
+/* Glassmorphism */
 .bg-glass {
   background: var(--glass-bg);
   backdrop-filter: blur(var(--glass-blur));
@@ -100,52 +96,12 @@ body {
   box-shadow: var(--glow-purple);
 }
 
-.glow-blue {
-  box-shadow: var(--glow-blue);
+.glow-violet {
+  box-shadow: var(--glow-violet);
 }
 
-.glow-green {
-  box-shadow: var(--glow-green);
-}
-
-.glow-red {
-  box-shadow: var(--glow-red);
-}
-
-/* Premium animations */
-@keyframes shimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
-}
-
-.shimmer {
-  position: relative;
-  overflow: hidden;
-}
-
-.shimmer::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-  animation: shimmer 2s infinite;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-}
-
-.float {
-  animation: float 3s ease-in-out infinite;
-}
-
-/* Premium card styles */
 .premium-card {
-  background: var(--glass-bg);
+  background: var(--glass-bg);  
   backdrop-filter: blur(var(--glass-blur));
   border: 1px solid var(--glass-border);
   border-radius: 16px;
@@ -154,30 +110,45 @@ body {
   overflow: hidden;
 }
 
+
+/* Premium card styles 
+.premium-card {
+  background: rgba(0, 0, 0, 0.2);  
+  backdrop-filter: blur(8px);  
+  border: 1px solid rgba(255, 255, 255, 0.1);  
+  border-radius: 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+*/
+
 .premium-card:hover {
   transform: translateY(-4px) scale(1.02);
   border-color: var(--primary-violet);
   box-shadow: var(--glow-purple);
-}
+  background: rgba(17, 24, 39, 0.6);  
+  backdrop-filter: blur(16px);
+  } 
 
-.premium-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, var(--primary-purple), var(--electric-blue));
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: -1;
-}
+
+/*.premium-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  border-color: rgba(255, 255, 255, 0.15);  
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.3);  
+  backdrop-filter: blur(12px);
+}*/
+
+
+
+
 
 .premium-card:hover::before {
-  opacity: 0.1;
+  opacity: 0.05;
 }
 
-/* Hide number input spinners across browsers */
+/* Hide number input spinners */
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -185,35 +156,6 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 input[type="number"] {
   -moz-appearance: textfield;
-}
-
-/* Background effect animations */
-@keyframes gradient-shift {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-@keyframes float-gentle {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-.bg-gradient-animated {
-  background: linear-gradient(-45deg, var(--primary-purple), var(--primary-violet), var(--electric-blue), var(--primary-purple));
-  background-size: 400% 400%;
-  animation: gradient-shift 15s ease infinite;
-}
-
-.float-gentle {
-  animation: float-gentle 6s ease-in-out infinite;
 }
 
 /* Staggered animations */
