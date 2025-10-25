@@ -25,7 +25,6 @@ export default function CasesLayout() {
 
   return (
     <section className="relative min-h-screen">
-      {/* Fixed Particles Background */}
       <div className="fixed inset-0 z-10 w-full h-full">
         <Particles
           particleCount={10000}
