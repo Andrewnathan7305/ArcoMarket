@@ -1,99 +1,94 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { useMetaMask } from "../hooks/useMetaMask";
 
-type User = {
-  name: string;
-  email?: string;
-  accountCreated: string;
-  walletAddress?: string;
-  network?: string;
-};
+// ✅ Admin address that can create markets
+const ADMIN_ADDRESS = "0x21522c86a586e696961b68aa39632948d9f11170";
 
 export default function Header() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState<User | null>(null);
-  const [showAuthCard, setShowAuthCard] = useState(false);
-  const [authType, setAuthType] = useState<"signup" | "login">("signup");
+  const { 
+    isConnected, 
+    account, 
+    balance, 
+    chainId, 
+    loading: walletLoading, 
+    error: walletError, 
+    connect, 
+    disconnect 
+  } = useMetaMask();
+  
   const [showMenu, setShowMenu] = useState(false);
-  const [name, setName] = useState("");
+  const [showSignupForm, setShowSignupForm] = useState(false);
+  const [userName, setUserName] = useState("");
+  const [isConnecting, setIsConnecting] = useState(false);
 
-  // Check for existing session on mount and listen for changes
+  // ✅ Check if current wallet is admin
+  const isAdmin = account?.toLowerCase() === ADMIN_ADDRESS.toLowerCase();
+
+  // Save user to localStorage when wallet connects
   useEffect(() => {
-    const checkAuth = () => {
+    if (isConnected && userName && account) {
+      const userData = {
+        name: userName,
+        accountCreated: new Date().toISOString(),
+        walletAddress: account,
+        network: `Chain ID: ${chainId}`
+      };
+      localStorage.setItem("arco_user", JSON.stringify(userData));
+    }
+  }, [isConnected, account, chainId, userName]);
+
+  // Load saved username only when wallet is connected
+  useEffect(() => {
+    if (isConnected) {
       const savedUser = localStorage.getItem("arco_user");
       if (savedUser) {
         const userData = JSON.parse(savedUser);
-        setUser(userData);
-        setIsLoggedIn(true);
-      } else {
-        setUser(null);
-        setIsLoggedIn(false);
+        setUserName(userData.name);
       }
-    };
+    }
+  }, [isConnected]);
 
-    // Check on mount
-    checkAuth();
+  // Clear localStorage when wallet disconnects
+  useEffect(() => {
+    if (!isConnected && localStorage.getItem("arco_user")) {
+      localStorage.removeItem("arco_user");
+      setUserName("");
+    }
+  }, [isConnected]);
 
-    // Listen for storage changes (logout from other tabs/components)
-    const handleStorageChange = (e: StorageEvent) => {
-      if (e.key === "arco_user") {
-        checkAuth();
-      }
-    };
-
-    // Listen for custom logout event
-    const handleLogout = () => {
-      checkAuth();
-    };
-
-    window.addEventListener("storage", handleStorageChange);
-    window.addEventListener("logout", handleLogout);
-
-    return () => {
-      window.removeEventListener("storage", handleStorageChange);
-      window.removeEventListener("logout", handleLogout);
-    };
-  }, []);
-
-  const login = (name: string, email?: string) => {
-    const newUser: User = {
-      name,
-      email,
-      accountCreated: new Date().toISOString(),
-      walletAddress: "0x742d35Cc6634C0532925a3b8D4C9db96C4b4d8b6",
-      network: "Ethereum Mainnet"
-    };
-    
-    setUser(newUser);
-    setIsLoggedIn(true);
-    setShowAuthCard(false);
-    localStorage.setItem("arco_user", JSON.stringify(newUser));
+  // Format wallet address for display
+  const formatAddress = (address: string) => {
+    return `${address.slice(0, 6)}...${address.slice(-4)}`;
   };
 
-  const logout = () => {
-    setUser(null);
-    setIsLoggedIn(false);
-    setShowAuthCard(false);
-    localStorage.removeItem("arco_user");
+  // Format balance for display
+  const formatBalance = (balance: string) => {
+    const num = parseFloat(balance);
+    return num.toFixed(4);
   };
 
-  const showAuth = (type: "signup" | "login") => {
-    setAuthType(type);
-    setShowAuthCard(true);
-  };
-
-  const hideAuth = () => {
-    setShowAuthCard(false);
-  };
-
-  const handleAuthSubmit = (e: React.FormEvent) => {
+  // Handle signup form submission
+  const handleSignupSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (name.trim()) {
-      login(name.trim());
-      setName("");
+    if (userName.trim()) {
+      setIsConnecting(true);
+      try {
+        console.log('Connecting wallet after signup...');
+        const success = await connect();
+        console.log('Wallet connection result:', success);
+        if (success) {
+          setShowSignupForm(false);
+        }
+      } catch (error) {
+        console.error('Wallet connection error:', error);
+      } finally {
+        setIsConnecting(false);
+      }
     }
   };
+
   return (
     <header className="fixed top-0 left-0 right-0 w-full backdrop-blur-md text-white flex items-center justify-between px-6 py-4 border-b border-primary-violet/20 z-50">
       {/* Background glow effect */}
@@ -127,82 +122,123 @@ export default function Header() {
       </div>
 
       <div className="flex items-center space-x-4 relative z-10">
-        {!isLoggedIn ? (
-          <>
-            <button 
-              onClick={() => showAuth("signup")}
-              className="px-6 py-2 rounded-xl bg-primary-gradient hover:bg-primary-gradient-hover transition-all duration-300 font-semibold text-white glow-purple hover:scale-105"
-            >
-              Sign Up
-            </button>
-            <button 
-              onClick={() => showAuth("login")}
-              className="px-6 py-2 rounded-xl border border-primary-violet hover:bg-primary-gradient hover:text-white transition-all duration-300 font-semibold text-primary-violet hover:scale-105 hover:border-transparent"
-            >
-              Login
-            </button>
-          </>
+        {!isConnected ? (
+          <button 
+            onClick={() => setShowSignupForm(true)}
+            className="px-6 py-2 rounded-xl bg-primary-gradient hover:bg-primary-gradient-hover transition-all duration-300 font-semibold text-white glow-purple hover:scale-105"
+          >
+            Sign Up
+          </button>
         ) : (
-          <div className="relative">
-            <button 
-              onClick={() => setShowMenu(!showMenu)}
-              className="p-2 rounded-md hover:bg-primary-violet/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-violet transition" 
-              aria-label="Menu"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
+          <div className="flex items-center space-x-4">
+            {/* ✅ Create Market Button (only for admin) */}
+            {isAdmin && (
+              <Link 
+                href="/account"
+                className="px-4 py-2 rounded-xl bg-primary-gradient hover:bg-primary-gradient-hover transition-all duration-300 font-semibold text-white hover:scale-105 flex items-center gap-2"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
-            
-            {showMenu && (
-              <div className="absolute right-0 mt-2 w-48 bg-neutral-900 border border-primary-violet/20 rounded-lg shadow-lg z-[9999]">
-                <Link 
-                  href="/account"
-                  className="block px-4 py-3 text-white hover:bg-primary-violet/20 transition"
-                  onClick={() => setShowMenu(false)}
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  className="h-5 w-5" 
+                  fill="none" 
+                  viewBox="0 0 24 24" 
+                  stroke="currentColor"
                 >
-                  Account
-                </Link>
-              </div>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                </svg>
+                Create Market
+              </Link>
             )}
+
+            {/* Wallet Status */}
+            <div className="flex items-center space-x-2 bg-glass border border-primary-violet/20 rounded-lg px-3 py-2">
+              <div className="w-2 h-2 bg-success-green rounded-full"></div>
+              <span className="text-sm text-white font-medium">
+                {userName || formatAddress(account)}
+              </span>
+              <span className="text-xs text-neutral-400">
+                {formatBalance(balance)} ETH
+              </span>
+            </div>
+            
+            {/* Menu */}
+            <div className="relative">
+              <button 
+                onClick={() => setShowMenu(!showMenu)}
+                className="p-2 rounded-md hover:bg-primary-violet/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-violet transition" 
+                aria-label="Menu"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </button>
+              
+              {showMenu && (
+                <div className="absolute right-0 mt-2 w-48 bg-neutral-900 border border-primary-violet/20 rounded-lg shadow-lg z-[9999]">
+                  <div className="px-4 py-3 border-b border-primary-violet/20">
+                    <p className="text-xs text-neutral-400">Welcome, {userName}</p>
+                    <p className="text-sm text-white font-medium">{formatAddress(account)}</p>
+                    <p className="text-xs text-neutral-400">Chain ID: {chainId}</p>
+                    {isAdmin && (
+                      <p className="text-xs text-success-green mt-1">Admin</p>
+                    )}
+                  </div>
+                  <Link 
+                    href="/account"
+                    className="block px-4 py-3 text-white hover:bg-primary-violet/20 transition"
+                    onClick={() => setShowMenu(false)}
+                  >
+                    Account
+                  </Link>
+                  <button
+                    onClick={() => {
+                      disconnect();
+                      setShowMenu(false);
+                      setUserName("");
+                      localStorage.removeItem("arco_user");
+                    }}
+                    className="w-full text-left px-4 py-3 text-danger-red hover:bg-danger-red/10 transition"
+                  >
+                    Disconnect
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         )}
+      </div>
 
-        {/* Auth Card */}
-        {showAuthCard && (
-          <>
-            {/* Backdrop */}
-            <div 
-              className="fixed inset-0 bg-black/50 z-[999999]"
-              onClick={hideAuth}
-            />
-            {/* Auth Card */}
-            <div className="fixed top-20 right-6 w-80 bg-neutral-900 border border-primary-violet/20 rounded-lg shadow-lg z-[999999] p-4" style={{ zIndex: 999999 }}>
+      {/* Signup Form */}
+      {showSignupForm && (
+        <>
+          <div 
+            className="fixed inset-0 bg-black/50 z-[999999]"
+            onClick={() => setShowSignupForm(false)}
+          />
+          <div className="fixed top-20 right-6 w-80 bg-neutral-900 border border-primary-violet/20 rounded-lg shadow-lg z-[999999] p-4">
             <div className="flex items-center justify-between mb-3">
-              <h3 className="font-montserrat font-bold text-white">
-                {authType === "signup" ? "Sign Up" : "Login"}
-              </h3>
+              <h3 className="font-montserrat font-bold text-white">Sign Up</h3>
               <button 
-                onClick={hideAuth}
+                onClick={() => setShowSignupForm(false)}
                 className="text-neutral-400 hover:text-white transition"
               >
                 ✕
               </button>
             </div>
-            <form onSubmit={handleAuthSubmit}>
+            <form onSubmit={handleSignupSubmit}>
               <div className="mb-4">
                 <label className="block text-sm text-neutral-300 mb-2">Name</label>
                 <input
                   type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  value={userName}
+                  onChange={(e) => setUserName(e.target.value)}
                   className="w-full rounded-md bg-neutral-800 border border-primary-violet/30 px-3 py-2 text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-primary-violet"
                   placeholder="Enter your name"
                   required
@@ -210,15 +246,15 @@ export default function Header() {
               </div>
               <button
                 type="submit"
-                className="w-full px-4 py-2 rounded-md bg-primary-gradient bg-primary-gradient-hover transition font-semibold"
+                disabled={isConnecting}
+                className="w-full px-4 py-2 rounded-md bg-primary-gradient hover:bg-primary-gradient-hover transition font-semibold text-white disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {authType === "signup" ? "Sign Up" : "Login"}
+                {isConnecting ? 'Connecting...' : 'Connect Wallet'}
               </button>
             </form>
-            </div>
-          </>
-        )}
-      </div>
+          </div>
+        </>
+      )}
     </header>
   );
 }
