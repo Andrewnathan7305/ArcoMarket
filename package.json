@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@types/three": "^0.180.0",
+    "ethers": "^6.15.0",
     "motion": "^12.23.24",
     "next": "15.5.6",
     "ogl": "^1.0.11",

@@ -47,3 +47,4 @@ blockend/package-lock.json
 *.sh
 /blockend/cache
 blockend/yarn.lock
+bun.lock

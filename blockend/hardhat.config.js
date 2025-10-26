@@ -1,6 +1,6 @@
 require("@nomiclabs/hardhat-waffle");
 require('dotenv').config()
-const nets = require('./network.json');
+const networks = require('./networks.js');
 
 /**
  * @type import('hardhat/config').HardhatUserConfig
@@ -31,5 +31,5 @@ module.exports = {
       }
     }
   },
-  networks: nets
+  networks: networks
 };
