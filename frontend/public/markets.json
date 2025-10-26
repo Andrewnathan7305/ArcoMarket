@@ -2,20 +2,20 @@
   {
     "id": "1",
     "data_id": "1",
-    "data_question": "Will the new US citizenship test start after October 20, 2025?",
+    "data_question": "is the UK Parliament debating new policies this week?",
     "imageUrl": "/1.jpeg",
     "outcomes": [
       {
         "id": "o1",
-        "label": "yes",
-        "yesProbability": 0.95,
-        "noProbability": 0.05
+        "label": "Yes",
+        "yesProbability": 0.5,
+        "noProbability": 0.5
       },
       {
         "id": "o2",
-        "label": "no",
-        "yesProbability": 0.05,
-        "noProbability": 0.95
+        "label": "No",
+        "yesProbability": 0.5,
+        "noProbability": 0.5
       }
     ],
     "chartData": []
@@ -44,20 +44,20 @@
   {
     "id": "3",
     "data_id": "3",
-    "data_question": "Is the UK Parliament debating new policies this week?",
+    "data_question": "Will ETH price go up to $4,500?",
     "imageUrl": "/1.jpeg",
     "outcomes": [
       {
         "id": "o1",
         "label": "Yes",
-        "yesProbability": 0.85,
-        "noProbability": 0.15
+        "yesProbability": 0.5,
+        "noProbability": 0.5
       },
       {
         "id": "o2",
         "label": "No",
-        "yesProbability": 0.15,
-        "noProbability": 0.85
+        "yesProbability": 0.5,
+        "noProbability": 0.5
       }
     ],
     "chartData": []
@@ -205,6 +205,27 @@
         "label": "no",
         "yesProbability": 0.01,
         "noProbability": 0.99
+      }
+    ],
+    "chartData": []
+  },
+  {
+    "id": "0",
+    "data_id": "0",
+    "data_question": "Will this test market work?",
+    "imageUrl": "/1.jpeg",
+    "outcomes": [
+      {
+        "id": "o1",
+        "label": "yes",
+        "yesProbability": 0.5,
+        "noProbability": 0.5
+      },
+      {
+        "id": "o2",
+        "label": "No",
+        "yesProbability": 0.5,
+        "noProbability": 0.5
       }
     ],
     "chartData": []

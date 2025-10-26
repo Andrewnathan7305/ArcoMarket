@@ -155,7 +155,7 @@ export default function CaseDetail({ params }: { params: { id: string } }) {
         <div className="mb-6">
           <OutcomeChart
             data={current.chartData}
-            outcomes={current.outcomes.map(o => ({ id: o.id, label: o.label, color: "#10B981" }))}
+            outcomes={current.outcomes.map(o => ({ id: o.id, label: o.label, color: o.yesProbability > o.noProbability ? "#10B981" : "#EF4444" }))}
           />
         </div>
 
