@@ -51,7 +51,7 @@ async function main() {
     // ============================================================================
     
     console.log('\n======= GENERATING BETTING TRANSACTIONS =======');
-    let accountsLength = Math.min(accounts.length, 10000); // Limit to 10k for benchmark
+    let accountsLength = Math.min(accounts.length, 100000); // Limit to 10k for benchmark
     
     frontendUtil.ensurePath(txbase + '/placeBet');
     const handle_bet = frontendUtil.newFile(txbase + '/placeBet/placeBet.out');
@@ -276,4 +276,5 @@ main()
         console.error(error);
         process.exit(1);
     });
+
 
