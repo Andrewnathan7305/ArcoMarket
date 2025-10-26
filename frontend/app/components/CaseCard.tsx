@@ -17,7 +17,7 @@ export default function CaseCard({ item }: Props) {
       <div className="relative h-32 w-full overflow-hidden flex-shrink-0">
         <Image
           src={item.imageUrl}
-          alt={item.title}
+          alt={item.data_question}
           fill
           className="object-cover transition-transform duration-300 group-hover:scale-105"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -37,7 +37,7 @@ export default function CaseCard({ item }: Props) {
       <div className="p-4 flex-1 flex flex-col bg-black/90">
         {/* Title */}
         <h3 className="font-montserrat font-bold text-xl text-white mb-3 line-clamp-2  transition-colors min-h-[56px]">                                                                                            
-          {item.title}
+          {item.data_question}
         </h3>
 
         {/* Outcomes Preview */}

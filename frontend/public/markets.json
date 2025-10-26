@@ -1,0 +1,233 @@
+[
+  {
+    "id": "1",
+    "data_id": "1",
+    "data_question": "is the UK Parliament debating new policies this week?",
+    "imageUrl": "/1.jpeg",
+    "outcomes": [
+      {
+        "id": "o1",
+        "label": "Yes",
+        "yesProbability": 0.5,
+        "noProbability": 0.5
+      },
+      {
+        "id": "o2",
+        "label": "No",
+        "yesProbability": 0.5,
+        "noProbability": 0.5
+      }
+    ],
+    "chartData": []
+  },
+  {
+    "id": "2",
+    "data_id": "2",
+    "data_question": "Has the US government updated immigration petition rules recently?",
+    "imageUrl": "/1.jpeg",
+    "outcomes": [
+      {
+        "id": "o1",
+        "label": "yes",
+        "yesProbability": 0.98,
+        "noProbability": 0.02
+      },
+      {
+        "id": "o2",
+        "label": "no",
+        "yesProbability": 0.02,
+        "noProbability": 0.98
+      }
+    ],
+    "chartData": []
+  },
+  {
+    "id": "3",
+    "data_id": "3",
+    "data_question": "Will ETH price go up to $4,500?",
+    "imageUrl": "/1.jpeg",
+    "outcomes": [
+      {
+        "id": "o1",
+        "label": "Yes",
+        "yesProbability": 0.5,
+        "noProbability": 0.5
+      },
+      {
+        "id": "o2",
+        "label": "No",
+        "yesProbability": 0.5,
+        "noProbability": 0.5
+      }
+    ],
+    "chartData": []
+  },
+  {
+    "id": "4",
+    "data_id": "4",
+    "data_question": "Did India launch a rural women credit scheme in Bihar?",
+    "imageUrl": "/1.jpeg",
+    "outcomes": [
+      {
+        "id": "o1",
+        "label": "yes",
+        "yesProbability": 0.98,
+        "noProbability": 0.02
+      },
+      {
+        "id": "o2",
+        "label": "no",
+        "yesProbability": 0.02,
+        "noProbability": 0.98
+      }
+    ],
+    "chartData": []
+  },
+  {
+    "id": "5",
+    "data_id": "5",
+    "data_question": "Is Solar Orbiter a NASA and ESA joint mission?",
+    "imageUrl": "/1.jpeg",
+    "outcomes": [
+      {
+        "id": "o1",
+        "label": "yes",
+        "yesProbability": 0.99,
+        "noProbability": 0.01
+      },
+      {
+        "id": "o2",
+        "label": "no",
+        "yesProbability": 0.01,
+        "noProbability": 0.99
+      }
+    ],
+    "chartData": []
+  },
+  {
+    "id": "6",
+    "data_id": "6",
+    "data_question": "Does Delhi’s pollution significantly reduce life expectancy?",
+    "imageUrl": "/1.jpeg",
+    "outcomes": [
+      {
+        "id": "o1",
+        "label": "yes",
+        "yesProbability": 0.99,
+        "noProbability": 0.01
+      },
+      {
+        "id": "o2",
+        "label": "no",
+        "yesProbability": 0.01,
+        "noProbability": 0.99
+      }
+    ],
+    "chartData": []
+  },
+  {
+    "id": "7",
+    "data_id": "7",
+    "data_question": "Was a new missile system recently developed by China?",
+    "imageUrl": "/1.jpeg",
+    "outcomes": [
+      {
+        "id": "o1",
+        "label": "yes",
+        "yesProbability": 0.92,
+        "noProbability": 0.08
+      },
+      {
+        "id": "o2",
+        "label": "no",
+        "yesProbability": 0.08,
+        "noProbability": 0.92
+      }
+    ],
+    "chartData": []
+  },
+  {
+    "id": "8",
+    "data_id": "8",
+    "data_question": "Will early citizenship applicants take the older civics test?",
+    "imageUrl": "/1.jpeg",
+    "outcomes": [
+      {
+        "id": "o1",
+        "label": "yes",
+        "yesProbability": 0.96,
+        "noProbability": 0.04
+      },
+      {
+        "id": "o2",
+        "label": "no",
+        "yesProbability": 0.04,
+        "noProbability": 0.96
+      }
+    ],
+    "chartData": []
+  },
+  {
+    "id": "9",
+    "data_id": "9",
+    "data_question": "Is the Assisted Dying Bill under review in UK’s House of Lords?",
+    "imageUrl": "/1.jpeg",
+    "outcomes": [
+      {
+        "id": "o1",
+        "label": "yes",
+        "yesProbability": 0.98,
+        "noProbability": 0.02
+      },
+      {
+        "id": "o2",
+        "label": "no",
+        "yesProbability": 0.02,
+        "noProbability": 0.98
+      }
+    ],
+    "chartData": []
+  },
+  {
+    "id": "10",
+    "data_id": "10",
+    "data_question": "Has USCIS introduced stricter moral character checks?",
+    "imageUrl": "/1.jpeg",
+    "outcomes": [
+      {
+        "id": "o1",
+        "label": "yes",
+        "yesProbability": 0.99,
+        "noProbability": 0.01
+      },
+      {
+        "id": "o2",
+        "label": "no",
+        "yesProbability": 0.01,
+        "noProbability": 0.99
+      }
+    ],
+    "chartData": []
+  },
+  {
+    "id": "0",
+    "data_id": "0",
+    "data_question": "Will this test market work?",
+    "imageUrl": "/1.jpeg",
+    "outcomes": [
+      {
+        "id": "o1",
+        "label": "yes",
+        "yesProbability": 0.5,
+        "noProbability": 0.5
+      },
+      {
+        "id": "o2",
+        "label": "No",
+        "yesProbability": 0.5,
+        "noProbability": 0.5
+      }
+    ],
+    "chartData": []
+  }
+]
