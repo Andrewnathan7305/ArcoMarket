@@ -64,3 +64,26 @@ $ forge --help
 $ anvil --help
 $ cast --help
 ```
+
+
+
+
+
+
+
+
+
+
+
+Terminal-1:
+anvil --fork-url https://polygon-rpc.com --chain-id 137 --block-time 2
+
+terminal-2:
+forge build
+forge test -vv --gas-report
+forge script script/DeployAll.s.sol \
+  --rpc-url http://localhost:8545 \
+  --private-key 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80 \
+  --broadcast
+node benchmark-prediction-markets.js
+

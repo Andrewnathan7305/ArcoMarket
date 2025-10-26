@@ -8,6 +8,10 @@ const provider = new ethers.JsonRpcProvider(ANVIL_RPC);
 const PRIVATE_KEY = '0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80';
 const signer = new ethers.Wallet(PRIVATE_KEY, provider);
 
+const MINIMAL_MARKET_ADDRESS = '0x1E70e89A3b1fbd15e5b143292134Dc94F0FE64e9';
+const FACTORY_ADDRESS = '0x448D754A23F2D92187fce65eda5739359c72e235';
+
+
 
 const MINIMAL_MARKET_ABI = [
     "function placeBet() payable",
