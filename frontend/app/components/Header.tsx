@@ -94,12 +94,12 @@ export default function Header() {
       {/* Background glow effect */}
       <div className="absolute inset-0 bg-gradient-to-r from-primary-purple/5 via-transparent to-electric-blue/5" />
 
-      <div className="flex items-center relative z-10">
-        <span className="font-montserrat font-bold text-3xl tracking-tight bg-gradient-to-r from-primary-purple via-primary-violet to-white bg-clip-text text-transparent glow-purple">
-          Predictology
-        </span>
+      <div className="flex items-center h-14 relative z-10">
+  <img src="/image.png" alt="Predictology Logo" className="h-16 w-auto -mt-2 -mb-2" />
+</div>
 
-      </div>
+
+
 
       <div className="flex-grow max-w-xl mx-6 relative z-10">
         <div className="group relative">
