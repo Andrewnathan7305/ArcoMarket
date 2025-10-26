@@ -1,14 +1,22 @@
 {
   "name": "hardhat-project",
+  "version": "1.0.0",
+  "description": "ArcoMarket - Prediction Market on Arcology",
+  "main": "index.js",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "deploy": "hardhat run scripts/deploy-contracts.ts --network hardhat"
+  },
   "devDependencies": {
-    "@nomiclabs/hardhat-ethers": "^2.0.5",
-    "@nomiclabs/hardhat-waffle": "^2.0.2",
-    "@nomiclabs/hardhat-web3": "^2.0.0",
-    "chai": "^4.3.6",
-    "ethereum-waffle": "^3.4.0",
-    "ethers": "^5.5.4",
-    "hardhat": "^2.8.4",
-    "web3": "^1.10.4"
+    "@nomicfoundation/hardhat-toolbox": "^2.0.0",
+    "hardhat": "^2.22.0",
+    "ethers": "^5.7.2",
+    "typescript": "^5.0.0",
+    "ts-node": "^10.9.0",
+    "chai": "^4.3.0",
+    "@types/chai": "^4.3.0",
+    "@types/mocha": "^10.0.0"
   },
   "dependencies": {
     "@arcologynetwork/concurrentlib": "^2.2.0",
