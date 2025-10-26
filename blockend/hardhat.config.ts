@@ -1,12 +1,5 @@
 import { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
-import "@nomicfoundation/hardhat-ignition";
-import "@nomicfoundation/hardhat-verify";
-import "@nomicfoundation/hardhat-chai-matchers";
-import "@nomicfoundation/hardhat-ethers";
-import "@nomicfoundation/hardhat-network-helpers";
-import "@nomicfoundation/hardhat-viem";
-import "@typechain/hardhat";
 import "dotenv/config";
 import * as fs from "fs";
 
@@ -49,7 +42,7 @@ const config: HardhatUserConfig = {
   },
   typechain: {
     outDir: "typechain-types",
-    target: "ethers-v6",
+    target: "ethers-v5",
   },
 };
 

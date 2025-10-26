@@ -1,0 +1,7 @@
+
+/.next
+/blockend/artifacts
+/blockend/node_modules
+/node_modules
+*.md
+*.lock
